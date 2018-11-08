@@ -37,4 +37,33 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    (function () {
+      let [width,height] = [1920,1080] ;
+      let rate = width / height;
+
+      function fit() {
+        let W = window.innerWidth;
+        let H = window.innerHeight;
+        // let W = 1920;
+        // let H = 1080;
+        // contains
+        let R = Math.min(W / width, H / height);
+        let l = (W - width * R) / 2;
+        let t = (H - height * R) / 2;
+
+        let target = document.querySelector('#root');
+       
+        let cssText = 'position:absolute;left:0px;top:0px;right:0px;bottom:0px;'
+          + 'width:' + width + 'px;height:' + height + 'px;'
+          + 'transform:scale(' + R + ',' + R + ');transform-origin:left top;';
+        target.style.cssText = cssText;
+      }
+
+      window.addEventListener('resize', fit);
+      fit();
+
+
+    })()
+  </script>
 </html>
