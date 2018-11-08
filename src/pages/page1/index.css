@@ -1,0 +1,21 @@
+.bgdiv{
+    width: 650px;
+    height: 600px;
+    margin: 0 auto;
+    background: url('../../imgs/2.jpg') no-repeat;
+    position: relative;
+}
+.img1{
+    position: absolute;
+    z-index: 10;
+    top: 155px;
+    left: 247px; 
+}
+.img3{
+    position: absolute;
+    z-index: 5;
+    top: 60px;
+    left: 116px;
+    transform:rotate(30deg);
+    transition: all 4s;
+}
