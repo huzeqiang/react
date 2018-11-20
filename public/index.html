@@ -37,33 +37,27 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
-  <script>
-    (function () {
-      let [width,height] = [1920,1080] ;
-      let rate = width / height;
-
-      function fit() {
-        let W = window.innerWidth;
-        let H = window.innerHeight;
-        // let W = 1920;
-        // let H = 1080;
-        // contains
-        let R = Math.min(W / width, H / height);
-        let l = (W - width * R) / 2;
-        let t = (H - height * R) / 2;
-
-        let target = document.querySelector('#root');
-       
-        let cssText = 'position:absolute;left:0px;top:0px;right:0px;bottom:0px;'
-          + 'width:' + width + 'px;height:' + height + 'px;'
-          + 'transform:scale(' + R + ',' + R + ');transform-origin:left top;';
-        target.style.cssText = cssText;
-      }
-
-      window.addEventListener('resize', fit);
-      fit();
-
-
-    })()
-  </script>
+  <script type="text/javascript">
+    (function(run){
+      if(!run) return;
+      let container = document.querySelector('#root');
+      let minWidth = 1280;
+      window.addEventListener('resize', e => {
+        let width = window.innerWidth;
+        let rate = 1;
+        if(width < minWidth){
+          rate = width / minWidth;
+        }
+      // console.log(rate)
+        if(rate < 1){
+          document.body.style.transformOrigin = '0px 0px';
+          document.body.style.transform = 'scale(' + rate + ',' + rate + ')';
+          document.body.style.width = width / rate + 'px';
+          document.body.style.height = window.innerHeight / rate + 'px';
+        } else {
+          document.body.style.cssText = '';
+        }
+      })
+    })(true);
+    </script>
 </html>
